@@ -5,12 +5,17 @@
         <div class="row">
             {% for cafe in cafe_row %}
                 <div class="col-sm">
-                        <a href={{cafe.map_url}} class="link-secondary">
-                            <div class="cafe-preview">
-                                <img src={{cafe.img_url}} class="card-image" alt="">
-                            </div>
-                            <p>{{cafe.name}}</p>
-                        </a>
+                    <a href={{cafe.map_url}} class="link-danger">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src={{cafe.img_url}} class="cafe-image" alt="">
+                        </div>
+                        <div class="cafe-content">
+                            <h6>{{cafe.name}}</h6>
+                            <h7>{{cafe.location}}</h7>
+                        </div>
+                    </div>
+                    </a>
                 </div>
             {% endfor %}
         </div>

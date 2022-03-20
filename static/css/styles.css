@@ -1,12 +1,17 @@
-.cafe-preview {
+.card {
     margin: 20px;
+    display: flex;
+    flex-direction: row;
+    background-color: #F3E9DD;
 }
 
-.card-image {
+.cafe-image {
     height: 100px;
     width: 100px;
+    margin-right: 20px;
 }
 
 .card-id {
     padding: 20px;
 }
+
