@@ -1,0 +1,21 @@
+{% include "header.html" %}
+
+<div class="container">
+      {% for cafe_row in all_cafes|batch(3, '&nbsp;') %}
+        <div class="row">
+            {% for cafe in cafe_row %}
+                <div class="col-sm">
+                        <a href={{cafe.map_url}} class="link-secondary">
+                            <div class="cafe-preview">
+                                <img src={{cafe.img_url}} class="card-image" alt="">
+                            </div>
+                            <p>{{cafe.name}}</p>
+                        </a>
+                </div>
+            {% endfor %}
+        </div>
+      {% endfor %}
+</div>
+
+
+{% include "footer.html" %}
