@@ -1,5 +1,6 @@
 {% include "header.html" %}
 
+
 <div class="container">
       {% for cafe_row in all_cafes|batch(3, '&nbsp;') %}
         <div class="row">
@@ -11,8 +12,13 @@
                             <img src={{cafe.img_url}} class="cafe-image" alt="">
                         </div>
                         <div class="cafe-content">
-                            <h6>{{cafe.name}}</h6>
-                            <h7>{{cafe.location}}</h7>
+                            <h6 class="h6">{{cafe.name}}</h6>
+                                <div class="cafe-details">
+                                     <h7>📍 {{cafe.location}}</h7>
+                                     <h7>🪑 {{cafe.seats}}</h7>
+                                     <h7>📍 {{cafe.has_wifi}}</h7>
+                                     <h7>📞 {{cafe.can_take_calls}}</h7>
+                                </div>
                         </div>
                     </div>
                     </a>

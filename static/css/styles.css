@@ -1,9 +1,39 @@
+/* unvisited link */
+a:link {
+  color: #46244C;
+}
+
+/* visited link */
+a:visited {
+  color: #46244C;
+}
+
+/* mouse over link */
+a:hover {
+  color: #46244C;
+  text-decoration: none;
+}
+
+/* selected link */
+a:active {
+  color: #46244C;
+}
+
 .card {
-    margin: 20px;
+    margin: 10px;
     display: flex;
     flex-direction: row;
     background-color: #F3E9DD;
 }
+
+.cafe-details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cafe-details>* {
+        margin: 2px;
+      }
 
 .cafe-image {
     height: 100px;
@@ -11,7 +41,15 @@
     margin-right: 20px;
 }
 
-.card-id {
-    padding: 20px;
+.h6 {
+    margin-top: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
 }
+
+.h7{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
 
