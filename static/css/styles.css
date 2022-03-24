@@ -41,6 +41,12 @@ a:active {
     margin-right: 20px;
 }
 
+.cafe-image-bg {
+    height: 400px;
+    width: 100%;
+    margin-right: 20px;
+}
+
 .h6 {
     margin-top: 10px;
     font-family: 'Open Sans', sans-serif;
@@ -52,4 +58,7 @@ a:active {
     font-weight: 300;
 }
 
-
+.navbar-custom {
+     background: #826F66;
+     margin-bottom: 50px;
+}

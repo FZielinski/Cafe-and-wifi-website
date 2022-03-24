@@ -2,11 +2,10 @@
 
 
 <div class="container">
-      {% for cafe_row in all_cafes|batch(3, '&nbsp;') %}
         <div class="row">
-            {% for cafe in cafe_row %}
-                <div class="col-sm">
-                    <a href={{cafe.map_url}} class="link-danger">
+            {% for cafe in all_cafes %}
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <a href="{{ url_for('show_cafe', cafe_id=cafe.id) }}" >
                     <div class="card">
                         <div class="card-image">
                             <img src={{cafe.img_url}} class="cafe-image" alt="">
@@ -16,8 +15,6 @@
                                 <div class="cafe-details">
                                      <h7>📍 {{cafe.location}}</h7>
                                      <h7>🪑 {{cafe.seats}}</h7>
-                                     <h7>📍 {{cafe.has_wifi}}</h7>
-                                     <h7>📞 {{cafe.can_take_calls}}</h7>
                                 </div>
                         </div>
                     </div>
@@ -25,7 +22,6 @@
                 </div>
             {% endfor %}
         </div>
-      {% endfor %}
 </div>
 
 
