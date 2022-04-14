@@ -32,6 +32,7 @@ a:active {
 }
 
 .cafe-details>* {
+        font-size: 0.8rem;
         margin: 2px;
       }
 
