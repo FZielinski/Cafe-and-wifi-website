@@ -16,7 +16,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cafes.db'
 db = SQLAlchemy(app)
 
 
-#Migrate to add new column to table that exist
+# Migrate to add new column to table that exist
 # migrate = Migrate(app, db)
 
 
@@ -26,9 +26,11 @@ login_manager.init_app(app)
 
 @login_manager.user_loader
 def load_user(user_id):
+    print(user_id)
     return User.query.get(int(user_id))
 
 
+# Create tables in Database
 class User(UserMixin, db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
@@ -93,10 +95,23 @@ def login():
     return render_template("login.html", form=form)
 
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('get_all_cafes'))
+
+
+# Register function
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
+
+        if User.query.filter_by(email=form.email.data).first():
+            print(User.query.filter_by(email=form.email.data).first())
+            #User already exists
+            flash("You've already signed up with that email, log in instead!")
+            return redirect(url_for('login'))
 
         salted_password = generate_password_hash(
             form.password.data,
@@ -115,10 +130,17 @@ def register():
     return render_template("register.html", form=form)
 
 
+# Add new cafe
 @app.route("/add", methods=["GET", "POST"])
 def add_cafe():
     form = AddCafeForm()
     if form.validate_on_submit():
+
+        if Cafe.query.filter_by(name=form.name.data).first():
+            print(User.query.filter_by(name=form.name.data).first())
+            #User already exists
+            flash("Cafe with this name already exist!")
+            return redirect(url_for('add_cafe'))
 
         new_cafe = Cafe(
             name=form.name.data,
@@ -131,6 +153,7 @@ def add_cafe():
             can_take_calls=form.can_take_calls.data,
             seats=form.seats.data,
             coffee_price=form.coffee_price.data,
+            author_id=current_user.id
         )
 
         db.session.add(new_cafe)
@@ -140,19 +163,13 @@ def add_cafe():
     return render_template("add_cafe.html", form=form)
 
 
-@app.route("/logout", methods=["GET", "POST"])
-def logout():
-    return render_template("logout.html")
-
-
-@app.route("/about", methods=["GET", "POST"])
-def about():
-    return render_template("about.html")
-
-
-@app.route("/contact", methods=["GET", "POST"])
-def contact():
-    return render_template("contact.html")
+# Delete cafe function
+@app.route("/delete/<int:cafe_id>", methods=["GET", "POST"])
+def delete_cafe(cafe_id):
+    cafe_to_delete = Cafe.query.get(cafe_id)
+    db.session.delete(cafe_to_delete)
+    db.session.commit()
+    return redirect(url_for('get_all_cafes'))
 
 
 if __name__ == "__main__":

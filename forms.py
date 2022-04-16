@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditorField
 
 
-##WTForm
+# WTForms
 
 class RegisterForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired()])
@@ -30,5 +30,5 @@ class AddCafeForm(FlaskForm):
     can_take_calls = BooleanField("Calls")
     seats = IntegerField("Seats", validators=[DataRequired()])
     coffee_price = FloatField("Price", validators=[DataRequired()])
-    author_id = IntegerField("Author id", validators=[DataRequired()])
+    #author_id = IntegerField("Author id", validators=[DataRequired()])
     submit = SubmitField("Submit cafe")
